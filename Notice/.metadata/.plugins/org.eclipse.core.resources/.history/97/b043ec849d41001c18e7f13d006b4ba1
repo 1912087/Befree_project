@@ -1,0 +1,121 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="notice.QA" %>
+<%@ page import="notice.QADAO" %>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+    	<link href="${pageContext.request.contextPath}/css/write_design.css" rel="stylesheet" type="text/css">
+        <title>BE FREE</title>
+    </head>
+    <body>
+        <%
+     // 세션에 값이 담겨있는지 체크
+     		String userID = null;
+     		if(session.getAttribute("userID") != null){
+     			userID = (String)session.getAttribute("userID");
+     		}
+     		if(userID == null){
+     			PrintWriter script = response.getWriter();
+     			script.println("<script>");
+     			script.println("alert('로그인을 하세요')");
+     			script.println("location.href='login.jsp'");
+     			script.println("</script>");
+     		}
+			int qID = 0;
+			if(request.getParameter("QID") != null){
+				qID = request.getParameter("QID");
+			}
+			if(qID == 0){
+				PrintWriter script = response.getWriter();
+				script.println("<script>");
+				script.println("alert('유효하지 않은 글입니다')");
+				script.println("location.href='Q&A.jsp'");
+				script.println("</script>");
+			}
+			//해당 'bbsID'에 대한 게시글을 가져온 다음 세션을 통하여 작성자 본인이 맞는지 체크한다
+			QA qa = new QADAO().getQA(qID);
+			if(!userID.equals(qa.getUserID())){
+				PrintWriter script = response.getWriter();
+				script.println("<script>");
+				script.println("alert('권한이 없습니다')");
+				script.println("location.href='Q&A.jsp'");
+				script.println("</script>");
+			}
+		%>
+        <div class="all">
+            <div class="main">
+                <header>
+                    <div class="name">
+                    </div>
+                
+                    <nav>
+                        <div class="title_menu">
+                            <a href="main.jsp"><img class="logo" src="images/BE_FREE.png"></a>
+                            <ul id="main-menu">
+                                <li><a href="회사소개.html">BE FREE란</a></li>
+                                <li><a href="#">관광지</a></li>
+                                <li><a href="#">추천여행지</a>
+                                    <ul id="sub-menu">
+                                        <li><a href="문의하기.html">추천여행지</a></li>
+                                        <li><a href="공지사항.html">추천여행일정</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">일정만들기</a></li>
+                                <li><a href="#">게시판</a>
+                                    <ul id="sub-menu">
+                                        <li><a href="공지사항.html">공지사항</a></li>
+                                        <li><a href="Q&A.jsp">Q&A</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">나의 저장소</a>
+                                    <ul id="sub-menu">
+                                        <li><a href="나의찜목록.html">나의 찜 목록</a></li>
+                                        <li><a href="나의여행일정.html">나의 여행 일정</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <div class="hd">
+                        <div class="ment">
+                          Q&A
+                        </div>
+                    </div>
+                </header>
+            </div>
+            
+            <div class="se">
+                <section>
+                    <div class="item_list">
+                        <p class="write">글 수정</p>
+                        <form method="post" action="updateAction.jsp?QID=<%= qID %>">
+	                        <table>
+	                            <tr><th>제목</th><td><input type="text" name="QTITLE" size="50" value="<%=qa.getQTITLE()%>"></td></tr>
+	                            <tr><th>내용</th><td><textarea cols="90" rows="20" name="QCONTENT"><%=qa.getQCONTENT() %></textarea></td></tr>
+	                        </table>
+	                        <div class="a3">
+	                        <button>수정하기</button><button type="reset"><a href="Q&A.jsp">취소</a></button>
+	                        </div>
+                        </form>
+                        
+                    </div>
+                </section>
+            
+	            <footer>
+	                <p style="padding: 25px 0px 0px 0px;">전화 : 031-720-2114</p>
+	                <p>주소 : 경기도 성남시 수정구 복정로 76</p>
+	            </footer>
+            </div>
+        </div>
+    </body>
+</html>

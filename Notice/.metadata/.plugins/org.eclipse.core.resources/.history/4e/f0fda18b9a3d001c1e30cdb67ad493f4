@@ -1,0 +1,11 @@
+package notice;
+ 
+public class Main {
+ 
+    public static void main(String[] args) {
+        UserDAO bDao = new UserDAO();
+ 
+    }
+ 
+}
+ 

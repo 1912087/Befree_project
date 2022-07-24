@@ -1,0 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%@ page import="java.sql.*" %>
+<%! Connection con  = null;
+    Statement  stmt = null;
+    PreparedStatement pstmt = null;
+    ResultSet  rs   = null; 
+ /* String driver="oracle.jdbc.driver.OracleDriver";  
+    String url="jdbc:oracle:thin:@study.dsc.ac.kr:1521:orcl";  */
+    String driver = "com.mysql.cj.jdbc.Driver"; 
+    String url    = "jdbc:mysql://localhost:3306/board?serverTimezone=UTC";
+    String user   = "root";
+    String pass   = "dl10743";
+%>

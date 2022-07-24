@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context docBase="D:\HTML\SQL\Notice\notice\WebContent" path="/notice" reloadable="true" source="org.eclipse.jst.jee.server:notice"><Resources><PreResources base="D:\HTML\SQL\Notice\notice\build\classes" classLoaderOnly="false" className="org.apache.catalina.webresources.DirResourceSet" internalPath="/" webAppMount="/WEB-INF/classes"/></Resources></Context>

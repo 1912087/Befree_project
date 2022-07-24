@@ -1,0 +1,60 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<title>::홍길동 게시판 로그인 페이지입니다.</title>
+<style type="text/css">
+       th, td {font-size:11pt;font-family:굴림;}       
+</style>
+<script language="javascript">
+        function logvalid(myform) {	  	            
+	             if ( myform.userid.value.length < 2 ) {
+					  alert("아이디를 입력하세요!");
+					  myform.userid.focus();
+					  return false;
+				 }
+				 if ( myform.password.value.length < 4 ) {
+					  alert("패스워드를 4자 이상 입력 하세요!");
+					  myform.password.focus();
+					  return false;
+				 }				
+				 return true;
+        }
+        function register() { // 회원 등록 양식 폼으로 이동            
+                 window.open("regsform.jsp", "_top");            
+        }
+</script>        
+</head>
+<body topMargin="20" leftMargin="0">
+<div align="center">
+<div style="font-size:22;font-weight:bold">홍길동 게시판 로그인</div>
+<hr  width="400" size="2" color="#ABCDEF"/>
+<form name="logform" method="POST" action="login.jsp" 
+      onSubmit="return logvalid(this);"> 
+<table width="400" border="1" cellPadding="5" cellSpacing="5" bgColor="#EEEEEE">
+<tr>
+   <th align="center" width="150">아&nbsp;이&nbsp;디</th>
+   <td align="left" width="250">
+       <input type="text" name="userid" size="20" placeholder="아이디 입력">
+   </td>
+</tr>
+<tr>
+   <th align="center" width="150">패스워드</th>
+   <td align="left" width="250">
+       <input type="password" name="password" size="20" placeholder="패스워드 입력">
+   </td>
+</tr> 
+<tr>
+   <td align="center" colspan="2" width="400">
+       <input type="checkbox" name="loginChk" value="true">로그인 상태 유지<br/>      
+       <input type="submit" Name="action"  Value="로그인">     
+       <input type="button" onClick="Javascript:register()" Value="회원가입">     
+  </td>
+</tr>
+</table>
+</form>
+</div>
+</body>
+</html>
+

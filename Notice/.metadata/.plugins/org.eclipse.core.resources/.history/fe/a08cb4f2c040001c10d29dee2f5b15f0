@@ -1,0 +1,128 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>BE FREE</title>
+        <script src ="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Bungee+Inline&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+
+        <style>
+            body{font-family: 'Gowun Dodum', sans-serif;}
+            ul {list-style-type: none;}
+            a {text-decoration: none; color:black;}
+            input {height:30px;}
+
+            .all {
+                padding-top:15px;
+                margin:0 auto;
+                width:995px;
+            }
+            .logo{
+                display: flex;
+                width: 341px;
+                float: left;
+            }
+            .aa {
+                /*height:1200px;*/
+                background-color: #f5f6f7;
+                padding-top: 50px;
+                position: relative;
+                top: 110px;
+                padding-bottom: 100px;
+            }
+
+            h2 {
+                font-size: 35px;
+                margin: 0px;
+                float: right;
+                text-align: right;
+                z-index: -1000;
+                width: 200px;
+                margin-top: 47px;   
+            }
+
+            .aa li, .a2 div { margin-left:50px;}
+
+            .a2 {
+                width:500px;
+                margin:0 auto;
+            
+            }
+            .btn {text-align: center;}
+            .ch {position: relative; top:-10px;}
+            .btn1{
+                background-color: rgb(89, 161, 165);
+                width: 150px;
+                height: 42px;
+                border: none;
+            }
+            .btn1 a{color: white; font-family: 'Gowun Dodum', sans-serif; font-size: 15px;}
+            .btn2{
+                background-color: rgb(114, 114, 114);
+                width: 150px;
+                height: 42px;
+                border: none;
+            }
+            .btn2 a{color: white; font-family: 'Gowun Dodum', sans-serif; font-size: 15px;}
+        </style>
+    </head>
+    <body>
+        <div class="all">
+            <header>
+                <div class="name">
+                    <a href="main.html"><img class="logo" src="images/BE_FREE.png"></a>
+                    <h2>회원가입</h2>
+                </div>
+            </header>
+
+			<form method="post" action="joinAction.jsp">
+	            <div class="aa">
+	                <div class="a2">
+	                    <ul>
+	                        <li><label>아이디</label><br><input type="id"size="43" placeholder=" 5~20자의 영문 소문자, 숫자" autofocus required></li><br>
+	                        <li><label>비밀번호</label><br><input type="password" size="43" placeholder=" 8~16자 영문 대 소문자, 숫자, 특수문자"required></li><br>
+	                        <li><label>비밀번호 확인</label><br><input type="password" size="43" placeholder=" 8~16자 영문 대 소문자, 숫자, 특수문자"required></li><br>
+	                        <li><label>이름</label><br><input type="naeme" size="43"required></li><br>
+	                        
+	                        <li><label>생년월일</label><br><input type="date" placeholder="2000-01-01" id="birth"></li><br>
+	                        <script type="text/javascript">
+								window.onload = function() {
+									today = new Date();
+									console.log("today.toISOString() >>>" + today.toISOString());
+									today = today.toISOString().slice(0, 10);
+									console.log("today >>>> " + today);
+									bir = document.getElementById("birth");
+									bir.value = today;
+								}
+							</script>
+	                        
+	                        
+	                        <li><label>이메일</label><br><input type="email" size="43" class="userEmail"></li><br>
+	                        <li><label class="ch">개인정보 수집 및 이용 안내</label><input type="checkbox" ></li>
+	                        <div style="overflow:scroll; width:350px; height:150px;">
+	                            <p>정보통신망법 규정에 따라 MUA에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.<br>
+	                                1. 수집하는 개인정보<br>
+	                                2. 수집한 개인정보의 이용<br>
+	                                3. 개인정보의 파기<br></p>
+	                        </div><br>
+	                        <li><label class="ch">이벤트 및 알림 메일 수신</label><input type="checkbox"></li><br>
+	                    </ul>
+	                </div>
+	                <br>
+	                <div class="btn">
+	                    <button class="btn1"><a href="#">가입하기</a></button> &nbsp;
+	                    <button class="btn2"><a href="main.html">취소</a></button>
+	                </div>
+	            </div>
+	       </form>
+        </div>
+    </body>
+</html>

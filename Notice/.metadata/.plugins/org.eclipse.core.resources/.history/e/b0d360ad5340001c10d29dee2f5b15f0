@@ -1,0 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%@ page errorPage="errorPage.jsp" %>    
+<%@ page import="java.util.*" %>
+<%@ page import="java.text.*" %>
+<%@ page import="java.util.regex.*" %>
+<%@ include file="dbconn.jspf"%>
+<%  String userID = request.getParameter("userID").trim(); // logform userid 값
+    String userPassword = request.getParameter("userPassword").trim(); // logform password
+    String loginChk = request.getParameter("loginChk");     
+    Class.forName(driver);  	
+    con  = DriverManager.getConnection(url, user, pass); 
+ 	stmt = con.createStatement();
+ 	String sql = "SELECT userID, userPassword FROM user "; 
+ 	sql = sql + "WHERE userID='"+userID+"' AND userPassword='"+userPassword+"'";
+ 	rs = stmt.executeQuery(sql);
+ 	if ( rs.next() ) { // 등록된 아이디와 비밀번호가 일치하면 	 	 
+ 	    if ( loginChk != null ) { // cookie에 저장 할 것인지 체크가 되어 있으면
+ 	   	     Cookie cn = new Cookie("userid", userid); //새로운 쿠키 값 설정
+ 	 	     cn.setMaxAge(10*60); // 2*60초(10분)
+ 	 	     cn.setPath("/");  // 쿠키를 저장할 클라이언트 위치 지정
+ 	 	     response.addCookie(cn); // 클라이언트에 쿠키 저장 	 	 	 
+		}else { // 세션 값 유지 
+			 session.removeAttribute("userid"); // 세션 변수 userid에 값 제거
+		     session.setMaxInactiveInterval(1*60); // 세션 값을 1분(60초) 동안 유지하도록 설정
+		     session.setAttribute("userid", userid); // 세션 변수 userid에 값 저장  
+		}
+ 	 	if ( rs!=null ) rs.close();
+	 	if ( stmt!=null ) stmt.close();
+	 	if ( con!=null ) con.close(); 
+		response.sendRedirect("writeform.jsp");
+ 	 } else { // 등록된 아이디 패스워드가 없으면
+ 	   if ( rs!=null ) rs.close();
+ 	   if ( pstmt!=null ) stmt.close();
+ 	   if ( con!=null ) con.close(); 
+ 	   out.println("<script language=javascript>");
+       out.println("alert('아이디,패스워드 일치하지 않습니다!!');");
+       out.println("history.back();");
+       out.println("</script>");      
+ 	 }   
+%>
