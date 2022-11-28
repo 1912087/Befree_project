@@ -1,0 +1,498 @@
+body { margin:0 auto; padding:20px 0 0 0; font-family: 'Gowun Dodum', sans-serif;}
+            li { display: inline-block; list-style: none; }
+            a { text-decoration: none; color:black;}
+            header{ display: inline-block; width: 1400px; margin: 0 auto;}
+            .hd { 
+                background-image: url('images/town_2.jpg');
+                background-size:over;
+                background-size:100% 100%;
+                background-attachment: fixed;
+                width:1400px;
+                height:300px;
+                background-repeat: no-repeat;
+                margin-top:-20px;
+            }
+            .main{
+                margin: 0 auto;
+                padding: 20px;
+                text-align: center;
+            }
+            .logo{
+                /*margin-top: 30px;
+                display: flex;
+                position : relative;*/
+                height: 100px;
+                /*left: 7%*/
+            }
+            .login { margin-right: 62px; /*float: right;*/ }
+            header ul{ text-align: right; }
+            .p { 
+                height:60px;
+                z-index: 1;
+                width:1500px; 
+                margin:0; 
+                padding:0;
+             }
+             nav {
+                display: flex;
+                justify-content: center;
+                position: relative;
+                /* background: black; */
+                margin: 0 auto;
+                /* width: 95%; */
+                /* position: absolute; */
+                /* left: 10%;*/
+            }
+            ul, li {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                text-decoration: none;
+            }
+
+            nav > ul > li{
+                width: 130px;
+            }
+            .se{
+                background-color: white;
+	            margin: 0 auto;
+	            width: 1400px;
+                text-align: center;
+            }
+            #main-menu{
+                /*background: black;*/
+                height: 40px;
+                /* position: relative; */
+                /* top: 50%; */
+                justify-content: center;
+                margin: 35px 0px 0px 20px;
+                float: right;
+                width: 810px;
+            }
+            #main-menu > li > a {
+                /*color:white;*/
+                text-align: center;
+                line-height: 39px;
+                padding: 0px 20px 0px 15px;
+                text-shadow: 1px 1px 1px white(0, 0, 0, 0.39);
+                width: 90px;
+                float: right;
+            }
+            
+            #main-menu > li::before{
+                content: "|";
+                float: right;
+                display: block;
+                margin-top: 7.7px;
+            }
+            #main-menu > li:last-child::before{
+                content: "";
+            }
+            #main-menu > li> .logo{
+                width: 120px;
+            }
+
+            #sub-menu {
+                width:120px;
+                position: absolute;
+                opacity: 0;
+                visibility: hidden;
+                background-color: rgba(255, 255, 255, 0.801);
+                border-top: 2px solid gold;
+                text-align: center;
+                top: 74px;
+            }
+
+            #sub-menu > li {
+                display: block;
+                font-size:13px;
+                padding: 10px 10px;
+            }
+
+            #main-menu > li:hover #sub-menu {
+                z-index: 1;
+                opacity: 1;
+                visibility: visible;
+            }
+            #sub-menu > li > a:hover { text-decoration:underline; color:gray; }
+            .event ul li { list-style: none; display: inline-block; }
+            section div img { width: 100%; } 
+            .ment {
+                margin :0 auto;
+                float:left;
+                width:100%;
+                font-size:100px;
+                text-align: center;
+                margin-top:100px;
+                color:rgb(255, 255, 255);
+                font-size: 70px;
+            }
+            section{width:1400px;margin:0 auto; padding-top:50px; padding-bottom: 50px;} 
+            .a1{ text-align: center; font-weight: bold; font-size:30px;}
+           /*.a2{background-color:gray; color:white; border-bottom: 2px solid black; padding:5px; margin-top:10px;}*/
+            footer{
+                clear:both;
+                margin: 0 auto;
+                /*background-color: rgb(22, 20, 20);*/
+                color:white;
+                text-align: center;
+                /*padding:15px;*/
+                font-size: 12px;
+                position: relative;
+                width: 1350px;
+                bottom: 0;
+                left: 0;
+                border-bottom: 100px solid black;
+				border-right: 25px solid transparent;
+				border-left: 25px solid transparent;
+				height: 0px;
+            }
+            .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, 'µ¸¿ò', sans-serif;line-height: 1.5;}
+            .wrap * {padding: 0;margin: 0;}
+            .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+            .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+            .info .title {padding: 5px 0 0 10px;height: 30px;background: rgb(17, 38, 141);border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold; color: #fff;}
+            .info .close {position: absolute;top: 10px;right: 10px;color: rgb(255, 255, 255);width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+            .info .close:hover {cursor: pointer;}
+            .info .body {position: relative;overflow: hidden;}
+            .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
+            .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+            .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+            .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
+            .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+            .info .link {color: #5085BB;}
+            .item_list{
+                text-align: center;
+                width: 1400px;
+                margin: 0 auto;
+            }
+            .item_img{
+                margin: 20px 20px;
+                width: 200px;
+            }
+
+            .item_list2{
+                width: 1400px;
+                text-align: center;
+            }
+            .recommend_travle{
+                margin: 0 auto;
+            }
+            .table_travle{
+                margin-left: auto;
+                margin-right: auto;
+                margin: 0 auto;
+                display: inline-block;
+                list-style: none;
+                width: 1400px;
+                margin: 0 auto;
+			    width: 1070px;
+			    text-align: left;
+            }
+            .travle{
+                /*border: 1px solid gray;*/
+                padding-right: 60px;
+            }
+            .item_section2{
+                float: left;
+                /*width: 240px;*/
+                /*box-shadow: 5px 5px 5px gray;*/
+                border: 1px solid rgb(184, 184, 184);
+                border-radius: 5px;
+                margin: 10px;
+            }
+            .item_title2{
+                margin: 0px 0px 20px 0px;
+                font-size: 20px;
+            }
+            .item_btm_like2{
+                /* width: 200px; */
+                text-align: right;
+                padding: 10px 10px 10px 10px;
+                border-top: 1px solid rgb(184, 184, 184);
+                /* margin: 0 auto; */
+            }
+            .location_list{
+                /*width: 320px;*/
+                display: inline-block;
+            }
+            .back{
+                background: linear-gradient(to right, #0052d4,#4364f7,#6fb1fc);
+                height: 44px;
+                padding: 5px;
+            }
+            .logo_img{
+                width: 390px;
+                padding: 74px 10px 74px 10px;
+            }
+            .site_logo{
+                font-size: 40px;
+                font-family: 'Black Han Sans', sans-serif;
+                /*background: linear-gradient(to right top, #0052d4,#4364f7,#6fb1fc);
+                color: transparent;
+                -webkit-background-clip: text;
+                -webkit-text-stroke-width: 0px;*/
+                color: black;
+                margin: 0px 0px 0px 0px;
+            }
+            .object_logo{
+                font-size: 40px;
+                font-family: 'Black Han Sans', sans-serif;
+                /*background: linear-gradient(to right top, #0052d4,#4364f7,#6fb1fc);
+                color: transparent;
+                -webkit-background-clip: text;
+                -webkit-text-stroke-width: 0px;*/
+                color: black;
+                margin: 0px 0px 0px 0px;
+            }
+            .a2{
+                font-size: 40px;
+                font-family: 'Black Han Sans', sans-serif;
+                /*background: linear-gradient(to right top, #0052d4,#4364f7,#6fb1fc);
+                color: transparent;
+                -webkit-background-clip: text;
+                -webkit-text-stroke-width: 0px;*/
+                color: black;
+                margin: 0px 0px 0px 0px;
+            }
+
+            .QA{
+                font-size: 30px;
+                font-weight: bold;
+                margin: 0 0 30px 0;
+            }
+            .w{
+                width:60px;
+                height:20px;
+                float:right;
+                margin:-30px 70px 10px 0;
+                text-align: center;
+            }
+            .w:hover a{color:rgb(0, 5, 54); text-decoration: underline;}
+            .w:hover{transform:scale(1.1); }
+            .se{background-color: #f5f6f7;}
+            
+			.bar-anchor{
+			  position: absolute;
+			  top: 50px;
+			  left: 0%;
+			  width: 0;
+			  padding: 20px 10px;
+			  margin:10px 4px;
+			  width: 40px;
+			  height: 40px;
+			  color: #f2f2f2;
+			  font-family: sans-serif;
+			  text-transform: uppercase;
+			  text-align: center;
+			  position: relative;
+			  text-decoration: none;
+			  display:inline-block;
+			   overflow:hidden;
+			/*    border:1px solid #6098FF; */
+			}
+			.bar-anchor span{
+			  background:#E02401;
+			  width:100%;
+			  position:relative;
+			  text-align: center;
+			  padding: 10px 15px;
+			   -moz-transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
+			  -o-transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
+			  -webkit-transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
+			  transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
+			/*   border:1px solid #6098FF;  */
+			}
+			.transition-bar{
+			    position: absolute;
+			    top: 0;
+			    left: 0%;
+			    width: 0;
+			    height: 65px;
+			    background: #E02401;
+			    z-index:-1;
+			/*     -ms-transform: skewX(-20deg); 
+			    -webkit-transform: skewX(-20deg); 
+			    transform: skewX(-20deg); */
+			}
+			.bar-anchor:hover span{
+			  color: #E02401!important;
+			  background: white;
+			}
+			.bar-anchor:hover .transition-bar{
+			  width:120%;
+			  left:110%;
+			  -moz-transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
+			  -o-transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
+			  -webkit-transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
+			  transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
+			}
+
+
+            .notice_check{
+                float: right;
+                margin-right: 70px;
+                margin-top: 15px;
+            }
+            .t1{
+                background: #001219;
+                color: white;
+                font-size: 17px;
+                border-radius: 0 54px;
+                border-bottom: 1px solid white;
+                height: 40px;
+                width: 200px;
+            }
+            .t2{
+                background: #001219;
+                color: white;
+                font-size: 17px;
+                border-radius: 54px 0;
+                border-bottom: 1px solid white;
+                height: 40px;
+                width: 200px;
+            }
+            .td{
+                text-align: left;
+                padding: 0 0 0 33px;    
+            }
+            .content{
+                height: 300px;
+                vertical-align: top;
+                text-align: left;
+                padding: 20px 0 0 40px;
+            }
+            .paging{
+            	display: inline-block;
+            	width: 900px;
+            }
+            .next{
+            	display: inline-block;
+            }
+            
+            
+            .data{height:500px;;}
+
+            .ac{
+                margin: 0 auto;
+                text-align: center;
+                width:400px;
+                height:40px;
+                border-top: 2px solid gray;
+                border-bottom: 2px solid gray;
+                margin-bottom: 40px;
+                font-size:20px;
+                padding-top:10px;
+            }
+            .ac2{font-weight: 600;}
+
+            /*¸ÊÀ¸·Î °¡´Â ¹öÆ°*/
+            .mapbtn {
+                -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+                -moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+                -ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+                -o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+                transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+                display: block;
+                margin: 10px auto;
+                /*max-width: 180px;*/
+                text-decoration: none;
+                border-radius: 4px;
+                padding: 20px 30px;
+                text-align: center;
+                color:black;
+                box-shadow:rgb(89, 161, 165) 0 0px 0px 2px inset;
+                font-weight:bold;
+                margin-top:40px;
+                font-family: 'Gowun Dodum', sans-serif;
+                font-size: 18px;
+                border: none;
+            }
+
+            .mapbtn:hover {
+                color:white;
+                box-shadow: rgb(89, 161, 165) 0 0px 0px 40px inset;
+            }
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            width: 95%;
+            height: 97%;
+            /*position: fixed;*/
+            z-index: 1;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            margin: 0 auto;
+            max-width: 1400px;
+        }
+    
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 0 auto; /* 15% from the top and centered */
+            padding: 19px;
+            border: 1px solid #888;
+            z-index: 100;
+            /*width: 30%; /* Could be more or less, depending on screen size */                          
+        }
+        .close_btn{
+            background: none;
+            border: none;
+            position: fixed;
+            right: 0.9%;
+            top: 2%;
+            width: 30px;
+        }
+
+        #map{position: fixed;}
+        #place{position: relative; 
+            width:250px; 
+            height:500px;
+            background-color:rgb(255, 255, 255); 
+            margin-left: 20px;
+            border-radius: 0 0 50px 50px;
+            box-shadow: 5px 5px 10px 3px gray;
+            border:1px solid gray;
+        }
+        #place ul li{list-style: none; text-align: left;}
+        #place h2{text-align: center; margin:0 auto; padding: 10px 0; background: #4e4c67; color: white;}
+        #placecontent{height:30px;text-align: center;border-top: 1px solid gray;padding-top: 5px; background: #dcd6f7;}
+        .tab ul{margin:0; padding:0;}
+        
+        .dot {overflow:hidden;float:left;width:12px;height:12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
+        .dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#fff;}
+        .dotOverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}    
+        .number {font-weight:bold;color:#ee6152;}
+        .dotOverlay:after {content:'';position:absolute;margin-left:-6px;left:50%;bottom:-8px;width:11px;height:8px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white_small.png')}
+        .distanceInfo {position:relative;top:5px;left:5px;list-style:none;margin:0;}
+        .distanceInfo .label {display:inline-block;width:50px;}
+        .distanceInfo:after {content:none;}
+
+        /*tab css*/
+        .tab{ width:250px; height: 320px;}
+        .tabnav{font-size:0; width:250px; border-top:1px solid #ddd;border-bottom:1px solid #ddd; text-align: center;}
+        .tabnav li{display: inline-block;  height:46px; text-align:center; border-right:1px solid #ddd;}
+        .tabnav li:nth-child(3){border-right: none;}
+        .tabnav li a:before{content:""; position:absolute; left:0; top:0px; width:100%; height:3px; }
+        .tabnav li a.active:before{background:rgb(89, 161, 165);}
+        .tabnav li a.active{border-bottom:1px solid #fff;}
+        .tabnav li a{ position:relative; display:block; background: #f8f8f8; color: #000; padding:0 17.5px; line-height:46px; text-decoration:none; font-size:16px;}
+        .tabnav li a:hover,
+        .tabnav li a.active{background:#fff; color:rgb(89, 161, 165); }
+        .tabcontent{padding: 20px; height:290px;margin-bottom: 15px;}
+        .tabcontent ol li{display: block;}
+
+ 		.stst div{
+ 			display:inline-block;
+ 		}
+            
