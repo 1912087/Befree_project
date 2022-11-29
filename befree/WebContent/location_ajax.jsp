@@ -34,4 +34,5 @@
 	jobject.addProperty("rpage", pageList.get("rpage"));
 	
 	out.write(gson.toJson(jobject));
+	
 %>

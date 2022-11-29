@@ -103,7 +103,7 @@
                     </nav>
                     <div class="hd">
                         <div class="ment">
-                          Q&A
+                          	공지사항
                         </div>
                     </div>
                 </header>

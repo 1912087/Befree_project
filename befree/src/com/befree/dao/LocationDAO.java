@@ -10,23 +10,38 @@ import com.befree.vo.LocationVo;
 
 public class LocationDAO extends DBConn {
 
-	//게시글 번호 부여 메소드
-	public int getNext() {
-		//현재 게시글을 내림차순으로 조회하여 가장 마지막 글의 번호를 구한다
-		int result = 0;
-		String sql = "select LID from befree order by LID desc";
+	/**
+	 * MAIN PAGE
+	 */
+	public ArrayList<LocationVo> getMainList(){
+		ArrayList<LocationVo> list = new ArrayList<LocationVo>();
+		String sql = "SELECT LID, CATEGORY, TNAME, IMG " + 
+				"FROM (SELECT LID, CATEGORY, TNAME, IMG " + 
+				"	FROM BEFREE ORDER BY RAND() LIMIT 4) MAINLIST " + 
+				"ORDER BY LID";
 		try {
 			getPreparedStatement(sql);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				result = rs.getInt(1) + 1;
+			while(rs.next()) {
+				LocationVo vo = new LocationVo();
+				vo.setLid(rs.getInt(1));
+				vo.setCategory(rs.getString(2));
+				vo.setTname(rs.getString(3));
+				vo.setImg(rs.getString(4));
+				
+				list.add(vo);
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return result; //데이터베이스 오류
+		
+		return list;
 	}
-
+	
+	/**
+	 * LOCATION PAGE
+	 */
+	
 	//게시글 리스트 메소드
 	public Map<String, Object> getList(String userid, int pageNumber, String loc){
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -42,17 +57,12 @@ public class LocationDAO extends DBConn {
 			loc_name = " AND LOCATION = '서귀포시'";
 		}
 		
-		/*String sql = "SELECT LID, LOCATION, TNAME, IMG " + 
-				" FROM (SELECT ROW_NUMBER() OVER(ORDER BY LID) RNO, LID, LOCATION, TNAME, IMG FROM BEFREE WHERE 1=1 " + 
-				loc_name + " ) BEFREE " + 
-				" WHERE RNO BETWEEN ? AND ?";*/
-		
 		String sql = "SELECT BEFREE.LID, LOCATION, TNAME, IMG, JID " + 
 				" FROM (SELECT ROW_NUMBER() OVER(ORDER BY LID) RNO, LID, LOCATION, TNAME, IMG " + 
 				"	  FROM BEFREE WHERE 1=1 " + loc_name + ") BEFREE LEFT OUTER JOIN " + 
 				"      (SELECT BF.LID, JIM.JID " + 
 				"	FROM BEFREE AS BF, JJIM AS JIM, USER AS US " + 
-				"	WHERE BF.LID = JIM.LID AND US.USERID = '" + userid + "') JJIM " + 
+				"	WHERE BF.LID = JIM.LID AND US.USERID = JIM.USERID AND JIM.USERID = '" + userid + "') JJIM " + 
 				" ON BEFREE.LID = JJIM.LID " + 
 				" WHERE RNO BETWEEN ? AND ?";
 		
@@ -78,23 +88,6 @@ public class LocationDAO extends DBConn {
 		map.put("list", list);
 		map.put("page", param);
 		return map;
-	}
-
-	//페이징 처리 메소드
-	public boolean nextPage(int pageNumber) {
-		String sql = "select * from befree where LID < ?";
-		try {
-			getPreparedStatement(sql);
-			pstmt.setInt(1, getNext() - (pageNumber - 1) * 8);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				return true;
-			}
-			//
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
 	}
 
 	//하나의 게시글을 보는 메소드
@@ -151,175 +144,6 @@ public class LocationDAO extends DBConn {
 		return result;
 	}
 
-	//--------------제주시-----------------------
-
-	//게시글 리스트 메소드
-	public ArrayList<LocationVo> getJeju(int pageNumber){
-		String sql = "select * from befree where LOCATION='제주시' order by LID desc limit 8 offset ?";
-		ArrayList<LocationVo> list = new ArrayList<LocationVo>();
-		try {
-			getPreparedStatement(sql);
-			pstmt.setInt(1, (pageNumber - 1) * 8);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				LocationVo location = new LocationVo();
-				location.setLid(rs.getInt(1));
-				location.setLocation(rs.getString(2));
-				location.setCategory(rs.getString(3));
-				location.setTname(rs.getString(4));
-				location.setTtime(rs.getString(5));
-				location.setAddress(rs.getString(6));
-				location.setPhone(rs.getString(7));
-				location.setSite(rs.getString(8));
-				location.setPrice(rs.getString(9));
-				location.setConvenient(rs.getString(10));
-				location.setComments(rs.getString(11));
-				location.setImg(rs.getString(12));
-				list.add(location);
-			}
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
-
-	//게시글 번호 부여 메소드
-	public int getNext_jeju() {
-		//현재 게시글을 내림차순으로 조회하여 가장 마지막 글의 번호를 구한다
-		int result = 0;
-		String sql = "select LID from befree WHERE LOCATION = '제주시' order by LID desc";
-		try {
-			getPreparedStatement(sql);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				result = rs.getInt(1) + 1;
-			}
-			//
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result; //데이터베이스 오류
-	}
-
-	//페이징 처리 메소드
-	public boolean nextPage_jeju(int pageNumber) {
-		String sql = "select * from befree where LID < ? && LOCATION = '제주시'";
-		try {
-			getPreparedStatement(sql);
-			pstmt.setInt(1, getCount_jeju() - (pageNumber - 1) * 8);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				return true;
-			}
-			//
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
-
-	public int getCount_jeju() {
-		int result = 0;
-		String sql = "select count(*) from befree WHERE LOCATION = '제주시'";
-		try {
-			getPreparedStatement(sql);
-			rs=pstmt.executeQuery();
-			if(rs.next()) {
-				result = rs.getInt(1);
-			}	
-			//		
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-
-
-	//----------------------서귀포시-----------------------------
-
-	//게시글 리스트 메소드
-	public ArrayList<LocationVo> getSeogwipo(int pageNumber){
-		String sql = "select * from befree where LOCATION='서귀포시' order by LID desc limit 8 offset ?";
-		ArrayList<LocationVo> list = new ArrayList<LocationVo>();
-		try {
-			getPreparedStatement(sql);
-			pstmt.setInt(1, (pageNumber - 1) * 8);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				LocationVo location = new LocationVo();
-				location.setLid(rs.getInt(1));
-				location.setLocation(rs.getString(2));
-				location.setCategory(rs.getString(3));
-				location.setTname(rs.getString(4));
-				location.setTtime(rs.getString(5));
-				location.setAddress(rs.getString(6));
-				location.setPhone(rs.getString(7));
-				location.setSite(rs.getString(8));
-				location.setPrice(rs.getString(9));
-				location.setConvenient(rs.getString(10));
-				location.setComments(rs.getString(11));
-				location.setImg(rs.getString(12));
-				list.add(location);
-			}
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
-	//게시글 번호 부여 메소드
-	public int getNext_seogwipo() {
-		//현재 게시글을 내림차순으로 조회하여 가장 마지막 글의 번호를 구한다
-		int result = 0;
-		String sql = "select LID from befree WHERE LOCATION = '서귀포시' order by LID desc";
-		try {
-			getPreparedStatement(sql);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				result = rs.getInt(1) + 1;
-			}
-			
-			return 1; //첫 번째 게시물인 경우
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result; //데이터베이스 오류
-	}
-
-	//페이징 처리 메소드
-	public boolean nextPage_seogwipo(int pageNumber) {
-		String sql = "select * from befree where LID < ? && LOCATION = '서귀포시' order by LID desc limit 8 offset ?";
-		try {
-			getPreparedStatement(sql);
-			pstmt.setInt(1, getNext_seogwipo());
-			pstmt.setInt(2, (pageNumber - 1) * 8);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				return true;
-			}
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
-
-	public int getCount_seogwipo() {
-		int result = 0;
-		String sql = "select count(*) from befree WHERE LOCATION = '서귀포시'";
-		try {
-			getPreparedStatement(sql);
-			rs=pstmt.executeQuery();
-			if(rs.next()) {
-				result = rs.getInt(1);
-			}			
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
 
 	//페이징 처리
 	public Map<String, Integer> getPaging(int rpage, String loc){

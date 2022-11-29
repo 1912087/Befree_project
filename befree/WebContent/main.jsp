@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "com.befree.dao.LocationDAO, com.befree.vo.LocationVo, java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -166,17 +167,25 @@
                 </div>
                 <div class="item_list">
                     <dd class="recommend_plan">
+                    <% 
+                    	LocationDAO locationDao = new LocationDAO();
+                    	ArrayList<LocationVo> list = locationDao.getMainList();
+                    	for(LocationVo vo : list){
+                    %>
                         <dl class="item_section">
                             <dt class="item_top">
-                                <a href="#">
-                                    <img src="images/tourist/19.png" width="200px" height="200px" class="item_img">
-                                    <p class="item_title">박물관은살아있다 제주</p>
-                                    <p class="item_plan">#박물관</p>
+                                <a href="location_view.jsp?ID=<%= vo.getLid() %>">
+                                    <img src="images/tourist/<%= vo.getImg() %>" width="200px" height="200px" class="item_img">
+                                    <p class="item_title"><%= vo.getTname() %></p><!-- 박물관은살아있다 제주 -->
+                                    <p class="item_plan"><%= vo.getCategory() %></p><!-- #박물관 -->
                                 </a>
                             </dt>
-                            <dt class="item_btm_like"><a href="location_view.jsp?ID=19"><img src="images/transparency.png" width="30px" height="30px"></a></dt>
+                            <dt class="item_btm_like"><a href="location_view.jsp?ID=<%= vo.getLid() %>"><img src="images/transparency.png" width="30px" height="30px"></a></dt>
                         </dl>
-                        <dl class="item_section">
+                    <%
+                    	}
+                    %>
+                        <!-- <dl class="item_section">
                             <dt class="item_top">
                                 <a href="#">
                                     <img src="images/tourist/25.png" width="200px" height="200px" class="item_img">
@@ -205,7 +214,7 @@
                                 </a>
                             </dt>
                             <dt class="item_btm_like"><a href="location_view.jsp?ID=53"><img src="images/transparency.png" width="30px" height="30px"></a></dt>
-                        </dl>
+                        </dl> -->
                     </dd>
                     
                 </div>

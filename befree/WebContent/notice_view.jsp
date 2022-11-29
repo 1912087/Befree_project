@@ -135,8 +135,10 @@
                                 <button class="custom-btn btn-5 de" onclick="delete_btn(this, <%=nid%>)"><span><a id="btn">삭제</a></span></button>
                                 <script>
                                 	function delete_btn(de, nid){
-                                		alert('정말로 삭제하시겠습니까?');
-                                		location.href="noticeDeleteAction.jsp?nid="+nid;
+                                		let check = confirm('정말로 삭제하시겠습니까?');
+                                		if(check){
+	                                		location.href="noticeDeleteAction.jsp?nid="+nid;                                			
+                                		}
                                 	}
 						        </script>
 	                        <%

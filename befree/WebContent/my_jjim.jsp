@@ -37,7 +37,11 @@
    				success : function(result){
    					let data = JSON.parse(result);
    					if(data.result == "jjim_cancel") {
-   						$(location).attr("href", "my_jjim.jsp?pageNumber=" + $("#currPage").attr("page-set"));
+   						if(($("#pageCount").val() - 1) != 0){
+   	   						$(location).attr("href", "my_jjim.jsp?pageNumber=" + $("#currPage").attr("page-set"));
+   						}else{
+   	   						$(location).attr("href", "my_jjim.jsp?pageNumber=" + ($("#currPage").attr("page-set") - 1));
+   						}
    					}
    				}//success
    			});//ajax
@@ -171,9 +175,10 @@
                 </div>                          
                        <!-- 페이징 처리 영역 -->
                        <div class="paging">
+                       		<input type = "hidden" id = "pageCount" value = "<%= list.size() %>">
 							<div class="next">
 							<%
-								if(pageNumber != 1){
+								if(pageNumber > 0 && pageNumber != 1){
 							%>
 								<a href="#0" class="bar-anchor" onclick="location.href='my_jjim.jsp?pageNumber=<%= pageNumber - 1 %>'">
 								    <span>◀</span>
@@ -192,7 +197,7 @@
 							<%	
 									}
 								}
-								if(pageNumber != param.get("pageCount")){
+								if(param.get("pageCount") != 0 && pageNumber != param.get("pageCount")){
 							%>
 								<a href="#0" class="bar-anchor" onclick="location.href='my_jjim.jsp?pageNumber=<%= pageNumber + 1 %>'">
 								     <span>▶</span>

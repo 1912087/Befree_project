@@ -29,13 +29,13 @@
 	int result = userDAO.login(user);
 	if(result == 1){
 		// 로그인에 성공하면 세션을 부여
-		session.setAttribute("userId", user.getUserID());
+		session.setAttribute("userID", user.getUserID());
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('로그인 성공')");
 		script.println("location.href='main.jsp'");
 		script.println("</script>");
-	}else if(result == 0){
+	}else {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('존재하지 않는 아이디입니다')");
